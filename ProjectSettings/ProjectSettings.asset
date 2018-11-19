@@ -645,9 +645,10 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Collab: 1
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 1e6d618a-99a3-42fe-bd8e-4fa3877f7ac1
   projectName: TP2-Proto
   organizationId: guillaume-lavoie-harvey

@@ -27,7 +27,10 @@ public class PlayerInputManager : MonoBehaviour {
         Vertical = Input.GetAxis("Vertical");
         Horizontal = Input.GetAxis("Horizontal");
 
-        Dash = Input.GetButtonDown("Dash");
+        if (Input.GetButtonDown("Dash"))
+        {
+            Dash = true;
+        }
         MainFire = Input.GetButtonDown("Fire1");
         AltFire = Input.GetButtonDown("Fire2");
 

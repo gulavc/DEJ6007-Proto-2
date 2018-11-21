@@ -316,7 +316,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2d8d09370f8c69f48b50dc1cc096b9ca, type: 2}
+  - {fileID: 2100000, guid: 67f9f63579642de498ec147a9b4f62e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -351,14 +351,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 759281864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e1b156731ef2b40923d1adb558e69c, type: 3}
+  m_Script: {fileID: 11500000, guid: c63b1fd73b9181b42a89db0fca11dd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 1015181152}
   moveSensitivity: 10
   dashDuration: 0.3
   dashStrength: 0.3
-  maxSpeed: 15
+  maxSpeed: 10
 --- !u!54 &759281870
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015181150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7acd6642116472841a448acbcb23ed4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 49d77e5f69f99e640a6e630abbc32ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1148876859

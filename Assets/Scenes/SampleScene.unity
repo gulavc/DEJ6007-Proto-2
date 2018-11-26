@@ -295,7 +295,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 570879131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db59a97bb4e5a64b9fb86f64779dcf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4b9bef275a6954c87f78f9ec953ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &759281864
@@ -358,7 +358,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 67f9f63579642de498ec147a9b4f62e9, type: 2}
+  - {fileID: 2100000, guid: 2d8d09370f8c69f48b50dc1cc096b9ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 759281864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff40236516c8ae4181a69e85170a92a, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e1b156731ef2b40923d1adb558e69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 1015181152}
@@ -438,7 +438,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1015181150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015181150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ef6861e60abbc743b5df50e34fb0df8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7acd6642116472841a448acbcb23ed4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1148876859
@@ -524,17 +524,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1246874901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ec85832f1b86649919eed2d9f3f3f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d8e952d038a73e47bc883d4d256af09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  transition_up: {fileID: 0}
-  transition_right: {fileID: 0}
-  transition_down: {fileID: 0}
-  transition_left: {fileID: 0}
 --- !u!1 &1761177124
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +679,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867531048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113a211ef2b3e684a96c4601f65be560, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fffc36705ccce14dab1d35200e74c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorDirection: 0

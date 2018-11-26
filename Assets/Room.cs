@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Room : MonoBehaviour {
 
+    //Adjacent rooms. Leave null if no adjacent room
     public Room up, down, left, right;
+
+    //The dimensions of the playable area, used to determine where to spawn the player
+    public int playableWitdth, playableHeight;
+
+
 
     private RoomManager rm;
 
@@ -26,7 +32,7 @@ public class Room : MonoBehaviour {
         //If the room is valid (i.e. not null), call on the RoomManager to load the next room
         if(r != null)
         {
-            rm.LoadRoom(r);
+            rm.LoadRoom(r,d);
         }
         
     }

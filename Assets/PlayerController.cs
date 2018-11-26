@@ -16,10 +16,16 @@ public class PlayerController : MonoBehaviour {
     public float dashStrength;
     public float maxSpeed;
 
+    public int MaxHP;
+
     //private variables for internal use
     private Vector3 playerDirection;
     private Direction playerFacing;
     private bool isDashing;
+    //private Gun activeGun;
+
+    //public Parameters
+    public int CurrentHP { get; private set; }
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +34,8 @@ public class PlayerController : MonoBehaviour {
         playerFacing = Direction.S;
         playerDirection = Direction.S.UnitVector();
         isDashing = false;
+
+        CurrentHP = 50;
     }
 	
 	
@@ -101,6 +109,13 @@ public class PlayerController : MonoBehaviour {
         playerInput.Dash = false;
         isDashing = false;
 
+    }
+
+
+    //public functions accessed by other scripts
+    public void AddHP(int amount)
+    {
+        CurrentHP = Mathf.Min(CurrentHP + amount, MaxHP);
     }
 
 }

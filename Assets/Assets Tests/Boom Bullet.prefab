@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23710100846841042}
   - component: {fileID: 135720822864633924}
   - component: {fileID: 54500916451786768}
-  - component: {fileID: 114864722607257762}
+  - component: {fileID: 114097602360719596}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Boom Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114864722607257762
+--- !u!114 &114097602360719596
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293998308042636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48cf604f9fa1e99478c8507c7201d427, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d6b74d3c3b50a145a5fb7e8821cd7bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &135720822864633924
@@ -122,5 +122,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3.63
   m_Center: {x: 0, y: 0, z: 0}

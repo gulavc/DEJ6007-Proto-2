@@ -67,4 +67,15 @@ public class GunClass : MonoBehaviour {
         this.RecoilForce = recoilForce;
     }
 
+
+    public void Update()
+    {
+        //If a gun has a parent (probably a player), aim the gun in direction of the mouse
+        if(this.transform.parent != null)
+        {
+            GunAim.Rotate(this.gameObject, this.transform.parent.gameObject);
+        }
+    }
+
+
 }

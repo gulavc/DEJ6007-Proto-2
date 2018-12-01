@@ -9,9 +9,9 @@ public class GunBoomBox : GunClass {
 
     bool isFiring = false;
 
-	
-	
-	void Update () {
+
+    new void Update () {
+        base.Update();
 
         if (isFiring == false)
         {

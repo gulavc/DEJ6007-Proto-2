@@ -8,7 +8,7 @@ public class Room : MonoBehaviour {
     public Room up, down, left, right;
 
     //The dimensions of the playable area, used to determine where to spawn the player
-    public int playableWitdth, playableHeight;
+    public float playableWitdth, playableHeight;
 
 
 

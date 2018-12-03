@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletDie : MonoBehaviour {
 
-    private void OnTriggerEnter(Collider other)
+    private void OnColliderEnter(Collider other)
     {
         if (other.gameObject.tag == "BulletStop")
         {

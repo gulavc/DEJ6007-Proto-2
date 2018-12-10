@@ -11,7 +11,8 @@ public class GunManager : GunClass {
 
 	
 	
-	void Update () {
+	new void Update () {
+        base.Update();
 
         if (isFiring == false)
         {

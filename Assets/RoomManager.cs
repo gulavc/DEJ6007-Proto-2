@@ -13,7 +13,7 @@ public class RoomManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        cam = GetComponentInChildren<Camera>();
+        //cam = GetComponentInChildren<Camera>();
 	}
 	
 	// Update is called once per frame
@@ -25,7 +25,7 @@ public class RoomManager : MonoBehaviour {
     public void LoadRoom(Room r, Direction incoming)
     {
         currentRoom = r;
-        cam.transform.position = (r.transform.position + cameraOffset);
+        //cam.transform.position = (r.transform.position + cameraOffset);
         Vector3 playerOffset;
         switch (incoming)
         {

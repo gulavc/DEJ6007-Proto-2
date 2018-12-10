@@ -118,4 +118,22 @@ public class PlayerController : MonoBehaviour {
         CurrentHP = Mathf.Min(CurrentHP + amount, MaxHP);
     }
 
+    public void RemoveHP(int amount)
+    {
+        CurrentHP -= amount;
+        if (CurrentHP <= 0)
+        {
+            GameOver();
+        }
+    }
+
+
+    private void GameOver()
+    {
+        Debug.Log("GameOver");
+        //GameOver
+        //Stop game
+        //Show GameOver UI
+    }
+
 }

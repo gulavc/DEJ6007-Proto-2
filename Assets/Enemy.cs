@@ -10,26 +10,31 @@ public class Enemy : MonoBehaviour {
 
     public HealthBar healthBar;
 
+    public EnemyBehavior enemyAI;
+
 	// Use this for initialization
 	void Start () {
         HP = maxHP;
         healthBar.barDisplay = 1f;
 
+        enemyAI.Self = this;
+
     }
 
     private void Update()
     {
+        //Temporary hack to damage the enemies
         if (Input.GetKeyDown(KeyCode.H))
         {
             Damage(10);
         }
+               
 
-        Vector3 positionFix = this.transform.position;
-        positionFix.y = -positionFix.y;
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(positionFix);
-        Debug.Log(screenPos);
+        //Execute the AI
+        enemyAI.Execute();
 
-        healthBar.pos = screenPos + healthBar.posOffset;
+        //Update the position of the Health Bar
+        UpdateHealthBarPosition();
 
     }
 
@@ -45,9 +50,24 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    //Moves the health bar to stay above the enemy
+    public void UpdateHealthBarPosition()
+    {
+        Vector3 positionFix = this.transform.position;
+        positionFix.y = -positionFix.y;
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(positionFix);
+
+        healthBar.pos = screenPos + healthBar.posOffset;
+    }
+
     //Kills the enemy
     public void Die()
     {
         Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        enemyAI.HandleCollision(collision);
     }
 }

@@ -7,8 +7,8 @@ public class Room : MonoBehaviour {
     //Adjacent rooms. Leave null if no adjacent room
     public Room up, down, left, right;
 
-    //The dimensions of the playable area, used to determine where to spawn the player
-    public float playableWitdth, playableHeight;
+    //Transform indicating the position of where to spawn the player once they enter the room
+    public Transform spawnPoint;
 
 
 
@@ -32,7 +32,7 @@ public class Room : MonoBehaviour {
         //If the room is valid (i.e. not null), call on the RoomManager to load the next room
         if(r != null)
         {
-            rm.LoadRoom(r,d);
+            rm.LoadRoom(r);
         }
         
     }

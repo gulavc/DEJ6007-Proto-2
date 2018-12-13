@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour {
 
     public PlayerController player;
 
-    public Text HPText;
+    public Text HPText; 
     
 
 	// Use this for initialization

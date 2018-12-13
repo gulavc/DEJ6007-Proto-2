@@ -5,6 +5,7 @@ using UnityEngine;
 public class RushingBehavior : EnemyBehavior
 {
 
+    
 
     //General behaviour of the enemy AI
     //Rushing enemy will try to rush the player, despawning and dealing damage if they hit
@@ -30,6 +31,7 @@ public class RushingBehavior : EnemyBehavior
         {
             Player.RemoveHP(damage);
             Destroy(Self.gameObject);
+            
         }
     }
 }

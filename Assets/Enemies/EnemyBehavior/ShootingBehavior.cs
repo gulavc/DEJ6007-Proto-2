@@ -35,7 +35,7 @@ public class ShootingBehavior : EnemyBehavior
         }
 
         //If first time, initialize destination
-        if (targetPosition == null)
+        if (targetPosition == Vector3.zero)
         {
             targetPosition = patrolPoint.position;
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunClass : MonoBehaviour {
+public abstract class GunClass : MonoBehaviour {
 
     public int GunID { get; set; }
 
@@ -76,6 +76,12 @@ public class GunClass : MonoBehaviour {
             GunAim.Rotate(this.gameObject, this.transform.parent.gameObject);
         }
     }
+
+    //Fires the primary fire of the gun
+    public abstract void FireGun();
+
+    //Fire the secondary fire of a gun, if any
+    public abstract void FireGunSecondary();
 
 
 }

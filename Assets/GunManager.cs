@@ -9,9 +9,27 @@ public class GunManager : GunClass {
 
     bool isFiring = false;
 
-	
-	
-	new void Update () {
+
+    public override void FireGun()
+    {
+        if (isFiring == false)
+        {
+            isFiring = true;
+            StartCoroutine(PistolBulletDelay());
+        }
+    }
+
+    public override void FireGunSecondary()
+    {
+        if (isFiring == false)
+        {
+            isFiring = true;
+            StartCoroutine(SecondaryPistolBulletDelay());
+        }
+    }
+
+
+    new void Update () {
         base.Update();
 
         if (isFiring == false)
@@ -74,5 +92,6 @@ public class GunManager : GunClass {
             yield return null;
         }
     }
+
     
 }

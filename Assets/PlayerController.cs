@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 playerDirection;
     private Direction playerFacing;
     private bool isDashing;
-    //private Gun activeGun;
+    private GunClass currentGun;
+    private List<GunClass> availableGuns;
 
     //public Parameters
     public int CurrentHP { get; private set; }
@@ -34,6 +35,9 @@ public class PlayerController : MonoBehaviour {
         isDashing = false;
 
         CurrentHP = 50;
+
+        //TEMP DO NOT LEAVE THIS
+        currentGun = FindObjectOfType<GunBoomBox>();
     }
 	
 	
@@ -90,10 +94,20 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleFire()
     {
-        //activeWeapon.FireMain();
-        //activeWeapon.FireAlt();
+        if (playerInput.MainFire)
+        {
+            currentGun.FireGun();
+        }
+
+        if (playerInput.AltFire)
+        {
+            currentGun.FireGunSecondary();
+        }
+       
     }
 
+
+    //Dashes in the specified direction for dashDuration, with dashStrength
     private IEnumerator Dash(Direction dir)
     {
         isDashing = true;
@@ -123,6 +137,12 @@ public class PlayerController : MonoBehaviour {
         {
             GameOver();
         }
+    }
+
+
+    private void SelectGun(int gunNumber)
+    {
+        currentGun = availableGuns[gunNumber];
     }
 
 

@@ -8,26 +8,27 @@ public class GunBoomBox : GunClass {
     public GameObject gunPoint;
 
     bool isFiring = false;
-
-
-    new void Update () {
-        base.Update();
-
+          
+    
+    //Fires the primary fire of the gun
+    public override void FireGun()
+    {
         if (isFiring == false)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                isFiring = true;
-                StartCoroutine(PistolBulletDelay());    
-            }
-            //else if (Input.GetMouseButtonDown(1))
-            //{
-            //    isFiring = true;
-            //    StartCoroutine(SecondaryPistolBulletDelay());
-            //}
+            isFiring = true;
+            StartCoroutine(PistolBulletDelay());
         }
-        
-	}
+    }
+
+    //Fires the secondary fire of a gun, if any is present
+    public override void FireGunSecondary()
+    {
+        if (isFiring == false)
+        {
+            isFiring = true;
+            StartCoroutine(SecondaryPistolBulletDelay());
+        }
+    }
 
     public IEnumerator PistolBulletDelay()
     {

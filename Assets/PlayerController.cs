@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour {
     public PlayerInputManager playerInput;
 
     //private references to other components
-    private Rigidbody rb;
 
     //Player options
     public float moveSensitivity;
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody>();
 
         playerFacing = Direction.S;
         playerDirection = Direction.S.UnitVector();

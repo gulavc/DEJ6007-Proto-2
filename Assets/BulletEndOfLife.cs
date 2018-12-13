@@ -22,7 +22,7 @@ public class BulletEndOfLife : MonoBehaviour {
 
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<PlayerController>().RemoveHP(10);
+            collision.gameObject.GetComponent<Enemy>().Damage(10);
             Destroy(this.gameObject);
         }
     }

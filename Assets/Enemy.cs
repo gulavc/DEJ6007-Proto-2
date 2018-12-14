@@ -10,14 +10,18 @@ public class Enemy : MonoBehaviour {
 
     public HealthBar healthBar;
 
+    //The base AI dictating the behavior of the enemy
     public EnemyBehavior enemyAI;
+    //Copy of the base AI for this individual enemy
+    private EnemyBehavior selfAI;
 
 	// Use this for initialization
 	void Start () {
         HP = maxHP;
         healthBar.barDisplay = 1f;
 
-        enemyAI.Self = this;
+        selfAI = Instantiate(enemyAI);
+        selfAI.Self = this;
 
     }
 
@@ -28,10 +32,10 @@ public class Enemy : MonoBehaviour {
         {
             Damage(10);
         }
-               
+
 
         //Execute the AI
-        enemyAI.Execute();
+        selfAI.Execute();
 
         //Update the position of the Health Bar
         UpdateHealthBarPosition();
@@ -68,6 +72,6 @@ public class Enemy : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        enemyAI.HandleCollision(collision);
+        selfAI.HandleCollision(collision);
     }
 }

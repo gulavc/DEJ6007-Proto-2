@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cf604f9fa1e99478c8507c7201d427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 0
+  damageType: 1
   damage: 10
   bulletForce: 50
   bulletLifetime: 5

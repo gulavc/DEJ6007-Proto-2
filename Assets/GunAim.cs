@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GunAim {    
+public static class GunAim {
+
+    public static Vector3 orientation;
 
     // Rotates a gameObject around another one to aim at the mouse
     public static void Rotate (GameObject gun, GameObject gunParent) {
 
-        Vector3 current, goal, mousePosition, test;
+        Vector3 goal, mousePosition, test;
 
-        current = gun.transform.position - gunParent.transform.position;
-        current.z = 0;
+        orientation = gun.transform.position - gunParent.transform.position;
+        orientation.z = 0;
 
         //Input the mouse position in pixel space. Artificially set the depth at 10 pixels away from the x-y plane to make sure the next function doesn't return nonsense
         test = Input.mousePosition;
@@ -25,8 +27,8 @@ public static class GunAim {
         goal.z = 0;
 
         //Calculate the angle between the current direction and the position of the mouse, then use a cross product to determine the polarity of the rotation
-        float angle = Vector3.Angle(current, goal);
-        Vector3 cross = Vector3.Cross(current, goal);
+        float angle = Vector3.Angle(orientation, goal);
+        Vector3 cross = Vector3.Cross(orientation, goal);
         if (cross.z > 0)
         {
             angle = -angle;
@@ -34,9 +36,10 @@ public static class GunAim {
         
         //Rotate the object to align with the goal vector
         gun.transform.RotateAround(gunParent.transform.position, Vector3.back, angle);
+        orientation = goal;
 
-        
-        
 
-	}
+
+
+    }
 }

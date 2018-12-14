@@ -36,7 +36,8 @@ public class GunBoomBox : GunClass {
 
         for (int i = 0; i < 1; i++) {
             bullet = Instantiate(bulletPrefab, gunPoint.transform.position, transform.rotation) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(gunPoint.transform.right * 7.5f);
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.Normalize(GunAim.orientation) * 7.5f; 
+
 
             yield return StartCoroutine(BulletTimer());
         }

@@ -113,6 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
+  damage: 10
+  bulletForce: 7.5
+  bulletLifetime: 5
 --- !u!135 &135720822864633924
 SphereCollider:
   m_ObjectHideFlags: 1

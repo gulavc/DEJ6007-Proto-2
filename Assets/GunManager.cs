@@ -54,7 +54,9 @@ public class GunManager : GunClass {
 
         for (int i = 0; i < 10; i++) {
             bullet = Instantiate(bulletPrefab, gunPoint.transform.position, transform.rotation) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(gunPoint.transform.right * 50f);
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.ProjectOnPlane(Vector3.Normalize(GunAim.orientation), Vector3.back) * 50; //transform.up * 50f;
+
+            Debug.Log(GunAim.orientation);
 
             yield return StartCoroutine(BulletTimer());
         }

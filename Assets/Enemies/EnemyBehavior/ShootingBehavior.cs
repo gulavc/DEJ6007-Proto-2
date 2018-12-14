@@ -37,11 +37,13 @@ public class ShootingBehavior : EnemyBehavior
                 //Calculate the unit vector in the direction of the player
                 Vector3 direction = Vector3.Normalize(Player.transform.position - Self.transform.position);
 
+                float radius = Self.GetComponent<SphereCollider>().radius/4f;
+
                 //Instanciate a bullet
-                BulletEndOfLife b = Instantiate(bullet, Self.transform.position, Quaternion.identity);
+                BulletEndOfLife b = Instantiate(bullet, Self.transform.position + direction * radius, Quaternion.identity);
 
                 //Shoot it
-                b.GetComponent<Rigidbody>().AddForce(direction * bullet.bulletForce);
+                b.GetComponent<Rigidbody>().velocity = (direction * bullet.bulletForce);
 
                 //Set the timer to start the cooldown between shots
                 cooldownTimer = shootingDelay;

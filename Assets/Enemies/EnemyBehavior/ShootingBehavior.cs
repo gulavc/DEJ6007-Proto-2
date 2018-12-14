@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ShootingBehavior : EnemyBehavior
 {
+    //The projectile the enemy will shoot
+    public BulletEndOfLife bullet;
 
-    public Transform patrolPoint;
-    private Transform spawnPoint;
-    private int moveStep = 0;
-    Vector3 targetPosition;
+    //How long between 2 shots
+    public float shootingDelay;
 
-    //public Bullet bullet 
+
+    private bool canShoot;
+    private float cooldownTimer;
+    
 
     //General behaviour of the enemy AI
-    //Shooting enemy will try to shoot the player, while patrolling between its spawn point and another fixed point
+    //Shooting enemy stays still but will try to shoot the player if they are within range
     public override void Execute()
     {
         if (Player == null)
@@ -21,43 +24,37 @@ public class ShootingBehavior : EnemyBehavior
             Player = FindObjectOfType<PlayerController>();
         }
 
-        if (spawnPoint == null)
-        {
-            spawnPoint = Self.transform;
-        }
 
 
         //If the enemy is close enough to the player, shoot him!
         if (Vector3.Distance(Player.transform.position, Self.transform.position) <= attackRange)
         {
-            //SHOOT BITCH!
-            Debug.Log("pewpewpew");
-        }
 
-        //If first time, initialize destination
-        if (targetPosition == Vector3.zero)
-        {
-            targetPosition = patrolPoint.position;
-        }
-
-        //Move along the path towards next waypoint
-        Self.transform.position = Vector3.ProjectOnPlane(Vector3.MoveTowards(Self.transform.position, targetPosition, movementSpeed), Vector3.back);
-
-        //If point is reached, change target to next waypoint
-        if (Self.transform.position == targetPosition)
-        {
-            moveStep = (moveStep + 1) % 2;
-            switch (moveStep)
+            if (canShoot)
             {
-                case 0:
-                    targetPosition = patrolPoint.position;
-                    break;
-                case 1:
-                    targetPosition = spawnPoint.position;
-                    break;
-                default:
-                    targetPosition = patrolPoint.position;
-                    break;
+                canShoot = false;
+
+                //Calculate the unit vector in the direction of the player
+                Vector3 direction = Vector3.Normalize(Player.transform.position - Self.transform.position);
+
+                //Instanciate a bullet
+                BulletEndOfLife b = Instantiate(bullet, Self.transform.position, Quaternion.identity);
+
+                //Shoot it
+                b.GetComponent<Rigidbody>().AddForce(direction * bullet.bulletForce);
+
+                //Set the timer to start the cooldown between shots
+                cooldownTimer = shootingDelay;
+
+            }
+        }
+
+        if (!canShoot)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if(cooldownTimer <= 0)
+            {
+                canShoot = true;
             }
         }
 
@@ -66,5 +63,17 @@ public class ShootingBehavior : EnemyBehavior
     public override void HandleCollision(Collision collision)
     {
         //Knockback enemy????
+    }
+
+
+    private IEnumerator ShootDelay()
+    {
+        float timer = shootingDelay;
+        while(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        canShoot = true;
     }
 }

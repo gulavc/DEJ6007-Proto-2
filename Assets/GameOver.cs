@@ -12,23 +12,19 @@ public class GameOver : MonoBehaviour {
 	void Start () {
         player = GameObject.FindObjectOfType<PlayerController>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     //Affiche le UI de gameOver
     public void LoseGame()
     {
         DeathUi.SetActive(true);
+        Time.timeScale = 0;
     }
 
     //Se fait appeler quand le joueur 
     public void RestartGame()
     {
-        player.RestartGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGame()

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInputManager playerInput;
 
     //private references to other components
+    private RoomManager rm;
 
     //Player options
     public float moveSensitivity;
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if(rm == null)
+        {
+            rm = GameObject.FindObjectOfType<RoomManager>();
+        }
 
         playerFacing = Direction.S;
         playerDirection = Direction.S.UnitVector();
@@ -54,6 +59,10 @@ public class PlayerController : MonoBehaviour
             unlockedGuns[i] = false;
             availableGuns[i].gameObject.SetActive(false);
         }
+
+        //Set timescale to 1, as it will be 0 if the player has previously died or completed a game
+        Time.timeScale = 1;
+
     }
 
 
@@ -221,6 +230,13 @@ public class PlayerController : MonoBehaviour
             currentGunID = ID;
             currentGun.gameObject.SetActive(true);
         }
+    }
+
+    //Respawns the player at the start of the current room, dealing damage in the process (0 by default)
+    public void RespawnPlayer(int damage = 0)
+    {
+        RemoveHP(damage);
+        this.transform.position = rm.CurrentRoom.spawnPoint.position;
     }
 
 

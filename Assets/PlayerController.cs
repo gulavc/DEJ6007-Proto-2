@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour {
     //public Parameters
     public int CurrentHP { get; private set; }
 
+    
+
 	// Use this for initialization
 	void Start () {
 

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     //References to other scripts
     public PlayerInputManager playerInput;
@@ -26,14 +27,16 @@ public class PlayerController : MonoBehaviour {
     //List of Guns available to the player
     public GunClass[] availableGuns;
     private bool[] unlockedGuns;
+    private int currentGunID;
 
     //public Parameters
     public int CurrentHP { get; private set; }
 
-    
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start()
+    {
 
         playerFacing = Direction.S;
         playerDirection = Direction.S.UnitVector();
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour {
 
         //Lock all guns at the beginning of the game
         unlockedGuns = new bool[availableGuns.Length];
+        currentGunID = int.MinValue;
 
         for (int i = 0; i < availableGuns.Length; ++i)
         {
@@ -51,19 +55,22 @@ public class PlayerController : MonoBehaviour {
             availableGuns[i].gameObject.SetActive(false);
         }
     }
-	
-	
-	void FixedUpdate () {
+
+
+    void FixedUpdate()
+    {
         playerFacing = CalculateDirection();
 
         HandleMovement();
-        
+
         HandleDash();
 
         HandleFire();
-		
-	}
-    
+
+        HandleSwitchGun();
+
+    }
+
 
     private void HandleMovement()
     {
@@ -82,7 +89,7 @@ public class PlayerController : MonoBehaviour {
         playerDirection = new Vector3(playerInput.Horizontal, playerInput.Vertical, 0f).normalized;
         if (Vector3.Angle(playerDirection, playerFacing.UnitVector()) >= 22.5f)
         {
-            for(Direction d = Direction.N; d <= Direction.NW; d++)
+            for (Direction d = Direction.N; d <= Direction.NW; d++)
             {
                 if (Vector3.Angle(playerDirection, d.UnitVector()) < 45)
                 {
@@ -97,16 +104,17 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleDash()
     {
-        if (playerInput.Dash && !isDashing)        {
-            
+        if (playerInput.Dash && !isDashing)
+        {
+
             StartCoroutine(Dash(playerFacing));
         }
-            
+
     }
 
     private void HandleFire()
     {
-        if(currentGun != null)
+        if (currentGun != null)
         {
             if (playerInput.MainFire)
             {
@@ -118,8 +126,8 @@ public class PlayerController : MonoBehaviour {
                 currentGun.FireGunSecondary();
             }
         }
-        
-       
+
+
     }
 
 
@@ -127,7 +135,7 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator Dash(Direction dir)
     {
         isDashing = true;
-        for(float time = dashDuration; time >= 0f;)
+        for (float time = dashDuration; time >= 0f;)
         {
             transform.Translate(dir.UnitVector() * dashStrength);
             time -= Time.fixedDeltaTime;
@@ -156,30 +164,63 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    private void SelectGun(int gunNumber)
-    {
-        currentGun = availableGuns[gunNumber];
-    }
-
-
-    private void GameOver()
-    {
-        Debug.Log("GameOver");
-        GameObject.FindObjectOfType<GameOver>().LoseGame();
-    }
 
     public void UnlockGun(int ID)
     {
-        if(ID < unlockedGuns.Length)
+        if (ID < unlockedGuns.Length)
         {
             unlockedGuns[ID] = true;
-            if(currentGun == null)
+            if (currentGun == null)
             {
                 currentGun = availableGuns[ID];
                 currentGun.gameObject.SetActive(true);
+                currentGunID = ID;
             }
         }
-        
+
+    }
+
+    private void HandleSwitchGun()
+    {
+        if (playerInput.NextGun)
+        {
+            playerInput.NextGun = false;
+
+            //Verifty that the gunID is valid, which means at least 1 gun has been unlocked
+            if (currentGunID >= 0)
+            {
+                Debug.Log("Switching Guns");
+                int nextID = (currentGunID + 1) % unlockedGuns.Length;
+                //Check if the nextt gun on the list is unlocked, looping back if at the end of the list
+                if (unlockedGuns[nextID])
+                {
+                    SwitchGun(nextID);
+
+                }
+                else
+                {
+                    //If the next gun is false (hasn't been unlocked yet) go back to the start of the list.
+                    nextID = 0;
+                    SwitchGun(nextID);
+                }
+                Debug.Log("ID: " + currentGunID);
+            }
+
+
+
+        }
+    }
+
+    private void SwitchGun(int ID)
+    {
+        if (unlockedGuns[ID] == true)
+        {
+            currentGun.gameObject.SetActive(false);
+
+            currentGun = availableGuns[ID];
+            currentGunID = ID;
+            currentGun.gameObject.SetActive(true);
+        }
     }
 
 
@@ -187,6 +228,12 @@ public class PlayerController : MonoBehaviour {
     {
         //TODO: Restart game;
         Debug.Log("GameRestarted");
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("GameOver");
+        GameObject.FindObjectOfType<GameOver>().LoseGame();
     }
 
 }

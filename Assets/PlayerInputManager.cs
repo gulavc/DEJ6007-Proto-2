@@ -13,7 +13,6 @@ public class PlayerInputManager : MonoBehaviour {
     public bool AltFire { get; set; }
 
     public bool NextGun { get; set; }
-    public bool PrevGun { get; set; }
 
     // Use this for initialization
     void Start () {
@@ -37,7 +36,12 @@ public class PlayerInputManager : MonoBehaviour {
         MainFire = Input.GetButtonDown("Fire1");
         AltFire = Input.GetButtonDown("Fire2");
 
-        
+        if(Input.mouseScrollDelta.y >= 0.1f || Input.mouseScrollDelta.y <= -0.1f)
+        {
+            NextGun = true;
+        }
+
+
 
     }
 }

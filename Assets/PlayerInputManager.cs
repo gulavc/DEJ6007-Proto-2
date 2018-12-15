@@ -12,8 +12,11 @@ public class PlayerInputManager : MonoBehaviour {
     public bool MainFire { get; set; }
     public bool AltFire { get; set; }
 
-	// Use this for initialization
-	void Start () {
+    public bool NextGun { get; set; }
+    public bool PrevGun { get; set; }
+
+    // Use this for initialization
+    void Start () {
         Vertical = 0f;
         Horizontal = 0f;
         Dash = false;
@@ -34,5 +37,7 @@ public class PlayerInputManager : MonoBehaviour {
         MainFire = Input.GetButtonDown("Fire1");
         AltFire = Input.GetButtonDown("Fire2");
 
-	}
+        
+
+    }
 }

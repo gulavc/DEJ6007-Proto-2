@@ -71,15 +71,3 @@ public class BulletSpecialEffect : MonoBehaviour
 
 }
 
-
-
-/**Vector3 explosionPos = this.gameObject.transform.position;
-Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-foreach (Collider hit in colliders)
-{
-    Rigidbody rb = hit.GetComponent<Rigidbody>();
-    if (rb != null){
-        rb.AddExplosionForce(power, explosionPos, radius, 3.0f); }
-}*/
-
-

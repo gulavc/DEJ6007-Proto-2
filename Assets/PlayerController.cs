@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour {
     private Direction playerFacing;
     private bool isDashing;
     private GunClass currentGun;
-    private List<GunClass> availableGuns;
+
+    //List of Guns available to the player
+    public GunClass[] availableGuns;
+    private bool[] unlockedGuns;
 
     //public Parameters
     public int CurrentHP { get; private set; }
@@ -34,10 +37,17 @@ public class PlayerController : MonoBehaviour {
         playerDirection = Direction.S.UnitVector();
         isDashing = false;
 
-        CurrentHP = 50;
+        CurrentHP = MaxHP;
+        currentGun = null;
 
-        //TEMP DO NOT LEAVE THIS
-        currentGun = FindObjectOfType<GunBoomBox>();
+        //Lock all guns at the beginning of the game
+        unlockedGuns = new bool[availableGuns.Length];
+
+        for (int i = 0; i < availableGuns.Length; ++i)
+        {
+            unlockedGuns[i] = false;
+            availableGuns[i].gameObject.SetActive(false);
+        }
     }
 	
 	
@@ -94,15 +104,19 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleFire()
     {
-        if (playerInput.MainFire)
+        if(currentGun != null)
         {
-            currentGun.FireGun();
-        }
+            if (playerInput.MainFire)
+            {
+                currentGun.FireGun();
+            }
 
-        if (playerInput.AltFire)
-        {
-            currentGun.FireGunSecondary();
+            if (playerInput.AltFire)
+            {
+                currentGun.FireGunSecondary();
+            }
         }
+        
        
     }
 
@@ -149,9 +163,27 @@ public class PlayerController : MonoBehaviour {
     private void GameOver()
     {
         Debug.Log("GameOver");
-        //GameOver
-        //Stop game
-        //Show GameOver UI
+        GameObject.FindObjectOfType<GameOver>().LoseGame();
+    }
+
+    public void UnlockGun(int ID)
+    {
+        if(ID < unlockedGuns.Length)
+        {
+            unlockedGuns[ID] = true;
+            if(currentGun == null)
+            {
+                currentGun = availableGuns[ID];
+                currentGun.gameObject.SetActive(true);
+            }
+        }
+        
+    }
+
+
+    public void RestartGame()
+    {
+        //TODO: Restart game;
     }
 
 }

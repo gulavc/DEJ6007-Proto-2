@@ -28,35 +28,13 @@ public class GunManager : GunClass {
         }
     }
 
-
-    new void Update () {
-        base.Update();
-
-        if (isFiring == false)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isFiring = true;
-                StartCoroutine(PistolBulletDelay());    
-            }
-            else if (Input.GetMouseButtonDown(1))
-            {
-                isFiring = true;
-                StartCoroutine(SecondaryPistolBulletDelay());
-            }
-        }
-        
-	}
-
     public IEnumerator PistolBulletDelay()
     {
         GameObject bullet;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             bullet = Instantiate(bulletPrefab, gunPoint.transform.position, transform.rotation) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = Vector3.ProjectOnPlane(Vector3.Normalize(GunAim.orientation), Vector3.back) * 50; //transform.up * 50f;
-
-            Debug.Log(GunAim.orientation);
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.ProjectOnPlane(Vector3.Normalize(GunAim.orientation), Vector3.back) * 10; 
 
             yield return StartCoroutine(BulletTimer());
         }

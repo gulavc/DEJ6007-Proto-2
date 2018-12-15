@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour {
     public void RestartGame()
     {
         //TODO: Restart game;
+        Debug.Log("GameRestarted");
     }
 
 }

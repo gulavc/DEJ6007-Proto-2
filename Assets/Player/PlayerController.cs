@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public float dashDuration;
     public float dashStrength;
     public float maxSpeed;
-
     public int MaxHP;
 
     //private variables for internal use
@@ -39,6 +38,8 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        //Initialize references to the room manager and rigidbody
         if(rm == null)
         {
             rm = GameObject.FindObjectOfType<RoomManager>();
@@ -48,10 +49,13 @@ public class PlayerController : MonoBehaviour
             rb = this.gameObject.GetComponent<Rigidbody>();
         }
 
+        //Initialize direction and dash
         playerFacing = Direction.S;
         playerDirection = Direction.S.UnitVector();
         isDashing = false;
 
+
+        //Initialise HP and first gun (start with no gun)
         CurrentHP = MaxHP;
         currentGun = null;
 
@@ -85,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    //Move the player around depending on the vertical and horizontal inputs
     private void HandleMovement()
     {
         transform.Translate(playerInput.Horizontal * moveSensitivity, playerInput.Vertical * moveSensitivity, 0f);
@@ -110,8 +114,10 @@ public class PlayerController : MonoBehaviour
         return playerFacing;
     }
 
+
     private void HandleDash()
     {
+        //If a dash is detected and we aren't already Dashing, Dash
         if (playerInput.Dash && !isDashing)
         {
 
@@ -120,8 +126,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    
     private void HandleFire()
     {
+        //If you have a gun equipped, fire the current gun (main, or secondary, depending on the input)
         if (currentGun != null)
         {
             if (playerInput.MainFire)
@@ -142,8 +150,11 @@ public class PlayerController : MonoBehaviour
     //Dashes in the specified direction for dashDuration, with dashStrength
     private IEnumerator Dash(Direction dir)
     {
+        //We deactivate gravity during the dash to be able to pass gaps
         rb.useGravity = false;
         isDashing = true;
+
+        //For the duration of the dash, translate the player in their facing direction each frame, by dashStrength units
         for (float time = dashDuration; time >= 0f;)
         {
             transform.Translate(dir.UnitVector() * dashStrength);
@@ -151,6 +162,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        //Set variables back to their original state, including the input
         playerInput.Dash = false;
         isDashing = false;
         rb.useGravity = true;
@@ -159,11 +171,14 @@ public class PlayerController : MonoBehaviour
 
 
     //public functions accessed by other scripts
+
+    //Adds HP to the player, up to their MaxHP
     public void AddHP(int amount)
     {
         CurrentHP = Mathf.Min(CurrentHP + amount, MaxHP);
     }
 
+    //Remove HP from the player. If it reaches 0 or lower, trigger the gameOver
     public void RemoveHP(int amount)
     {
         CurrentHP -= amount;
@@ -174,12 +189,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+    //Unlocks a specific gun, by ID
     public void UnlockGun(int ID)
     {
+
+        //Check if the ID is contained in the number of guns available
         if (ID < unlockedGuns.Length)
         {
+            //unlock the gun
             unlockedGuns[ID] = true;
+
+            //if the player has no gun equipped (e.g. it's their 1st unlock) equip the gun they just unlocked
             if (currentGun == null)
             {
                 currentGun = availableGuns[ID];
@@ -190,6 +210,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Handles switching to the next gun
     private void HandleSwitchGun()
     {
         if (playerInput.NextGun)
@@ -199,7 +220,6 @@ public class PlayerController : MonoBehaviour
             //Verifty that the gunID is valid, which means at least 1 gun has been unlocked
             if (CurrentGunID >= 0)
             {
-                Debug.Log("Switching Guns");
                 int nextID = (CurrentGunID + 1) % unlockedGuns.Length;
                 //Check if the nextt gun on the list is unlocked, looping back if at the end of the list
                 if (unlockedGuns[nextID])
@@ -213,7 +233,6 @@ public class PlayerController : MonoBehaviour
                     nextID = 0;
                     SwitchGun(nextID);
                 }
-                Debug.Log("ID: " + CurrentGunID);
             }
 
 
@@ -221,10 +240,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    //Switch to the specified gun, by ID, as long as it's unlocked
     public void SwitchGun(int ID)
     {
         if (unlockedGuns[ID] == true)
         {
+            //Set the current gun to inactive to avoid object duplication
             currentGun.gameObject.SetActive(false);
 
             currentGun = availableGuns[ID];
@@ -240,16 +262,9 @@ public class PlayerController : MonoBehaviour
         this.transform.position = rm.CurrentRoom.spawnPoint.position;
     }
 
-
-    public void RestartGame()
-    {
-        //TODO: Restart game;
-        Debug.Log("GameRestarted");
-    }
-
+    //When the game is over, call the LoseGame function of the GameOver script
     private void GameOver()
     {
-        Debug.Log("GameOver");
         GameObject.FindObjectOfType<GameOver>().LoseGame();
     }
 

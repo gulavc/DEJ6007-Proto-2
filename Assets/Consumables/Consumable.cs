@@ -8,11 +8,13 @@ public abstract class Consumable : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //Find a reference to the player
         pl = FindObjectOfType<PlayerController>();
 	}
 
     private void OnTriggerEnter(Collider other)
     {
+        //If a player hit the consumable, trigger their effect, whatever it may be, then destroy the consumable
         if(other.tag == "Player")
         {
             PickupConsumable(pl);
@@ -20,5 +22,6 @@ public abstract class Consumable : MonoBehaviour {
         }
     }
 
+    //Every consumable needs to implements this
     public abstract void PickupConsumable(PlayerController player);
 }

@@ -11,7 +11,7 @@ public class Room : MonoBehaviour {
     public Transform spawnPoint;
 
 
-
+    //reference to the room manager
     private RoomManager rm;
 
 	// Use this for initialization
@@ -19,11 +19,7 @@ public class Room : MonoBehaviour {
         rm = GameObject.FindObjectOfType<RoomManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        
-	}
-
+    //transitions the player to the room in direction D
     public void Transition(Direction d)
     {
         //Find the next room to load depending on the direction specified
@@ -37,7 +33,7 @@ public class Room : MonoBehaviour {
         
     }
 
-    //Returns the adjacent room, depending on the specified direction
+    //Returns the adjacent room, depending on the specified direction. If invalid direction, return null, i.e. no room
     public Room GetNextRoom(Direction d)
     {
         switch (d)

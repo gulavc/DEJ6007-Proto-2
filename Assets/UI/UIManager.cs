@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
+	// Updates the value of the player's HP
 	void Update () {
         HPText.text = "HP: " + player.CurrentHP + " / " + player.MaxHP;
 	}

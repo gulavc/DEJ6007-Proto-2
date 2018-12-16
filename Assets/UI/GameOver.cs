@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
     
+    //reference to the UI to turn it on/off
     public GameObject DeathUi;
     
 
@@ -12,6 +13,7 @@ public class GameOver : MonoBehaviour {
     public void LoseGame()
     {
         DeathUi.SetActive(true);
+        //set timescale to 0 to prevent player movement
         Time.timeScale = 0;
     }
 

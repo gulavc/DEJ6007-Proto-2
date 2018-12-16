@@ -4,28 +4,18 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour {
 
+    //reference to the current room the player is in
     public Room CurrentRoom { get; private set; }
-    //private Camera cam;
 
-    //Parametres modifiables dans l'éditeur
-    //public Vector3 cameraOffset;
+    //Reference to the player 
     public PlayerController player;
 
-	// Use this for initialization
-	void Start () {
-        //cam = GetComponentInChildren<Camera>();
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    //Load the room passed in parameter, and place the player at the [incoming] direction door
+    //Load the room passed in parameter, and place the player at the spawn point of the room
     public void LoadRoom(Room r)
     {
         CurrentRoom = r;
-        //cam.transform.position = (r.transform.position + cameraOffset);
         player.transform.position = r.spawnPoint.position;
     }
 }

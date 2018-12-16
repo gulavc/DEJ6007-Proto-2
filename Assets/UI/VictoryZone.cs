@@ -14,7 +14,7 @@ public class VictoryZone : MonoBehaviour {
     {
         if (victory)
         {
-
+            Time.timeScale = 0;
             VictoryUI.SetActive(true);
             victory = false;
         }

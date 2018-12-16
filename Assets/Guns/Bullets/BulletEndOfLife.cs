@@ -41,6 +41,8 @@ public class BulletEndOfLife : MonoBehaviour {
     }
 }
 
+
+//Enum to determine who can get hit by which bullet
 public enum DamageType
 {
     Player,

@@ -11,6 +11,7 @@ public class RushingBehavior : EnemyBehavior
     //Rushing enemy will try to rush the player, despawning and dealing damage if they hit
     public override void Execute()
     {
+        //If the reference to the player isn't set, find it and set it
         if (Player == null)
         {
             Player = FindObjectOfType<PlayerController>();
@@ -25,6 +26,7 @@ public class RushingBehavior : EnemyBehavior
     }
 
     //Handles the collisions from the enemy object
+    //In the case of a Rush Behavior, this means if a player has been hit, deal damage and despawnn self
     public override void HandleCollision(Collision collision)
     {        
         if (collision.collider.gameObject.tag == "Player")

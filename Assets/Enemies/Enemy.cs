@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
+    //Current and Max HP of the enemy
     public int HP { get; private set; }
     public int maxHP;
 
+    //Reference to the healthBar
     public HealthBar healthBar;
 
     //The base AI dictating the behavior of the enemy
@@ -18,8 +20,9 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         HP = maxHP;
-        healthBar.barDisplay = 1f;
+        healthBar.updateText(maxHP);
 
+        //Create a copy of the AI and set Self as a reference to itself on the AI script
         selfAI = Instantiate(enemyAI);
         selfAI.Self = this;
 
@@ -27,18 +30,16 @@ public class Enemy : MonoBehaviour {
 
     private void Update()
     {
-        //Temporary hack to damage the enemies
+        //Test Cheat Code. Decided to leave it in to make testing easier. 
+        //Hitting "H" while in play will damage all ennemies by 10 points
         if (Input.GetKeyDown(KeyCode.H))
         {
             Damage(10);
         }
 
 
-        //Execute the AI
+        //Execute the AI behaviour linked to this enemy
         selfAI.Execute();
-
-        //Update the position of the Health Bar
-        UpdateHealthBarPosition();
 
     }
 
@@ -46,23 +47,14 @@ public class Enemy : MonoBehaviour {
     public void Damage(int damage)
     {
         HP -= damage;
-        healthBar.barDisplay = (float)HP / maxHP;
+        healthBar.updateText(HP);
 
         if(HP <= 0)
         {
             Die();
         }
     }
-
-    //Moves the health bar to stay above the enemy
-    public void UpdateHealthBarPosition()
-    {
-        Vector3 positionFix = this.transform.position;
-        positionFix.y = -positionFix.y;
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(positionFix);
-
-        healthBar.pos = screenPos + healthBar.posOffset;
-    }
+    
 
     //Kills the enemy
     public void Die()
@@ -70,6 +62,7 @@ public class Enemy : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+    //If an enemy needs to react to collisions with players, or anything else, we let their AI handle it
     private void OnCollisionEnter(Collision collision)
     {
         selfAI.HandleCollision(collision);

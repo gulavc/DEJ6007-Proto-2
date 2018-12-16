@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GunBoomBox : GunClass {
-
+    
     public GameObject bulletPrefab;
     public GameObject gunPoint;
-
-    bool isFiring = false;
+    
+    private bool isFiring = false;
           
     
     //Fires the primary fire of the gun

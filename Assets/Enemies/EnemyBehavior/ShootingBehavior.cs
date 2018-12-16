@@ -10,7 +10,7 @@ public class ShootingBehavior : EnemyBehavior
     //How long between 2 shots
     public float shootingDelay;
 
-
+    //Private variables to handle shooting
     private bool canShoot;
     private float cooldownTimer;
     
@@ -19,6 +19,7 @@ public class ShootingBehavior : EnemyBehavior
     //Shooting enemy stays still but will try to shoot the player if they are within range
     public override void Execute()
     {
+        //If the reference to the player isn't set, find it and set it
         if (Player == null)
         {
             Player = FindObjectOfType<PlayerController>();
@@ -26,7 +27,7 @@ public class ShootingBehavior : EnemyBehavior
 
 
 
-        //If the enemy is close enough to the player, shoot him!
+        //If the enemy is close enough to the player, shoot him, if possible!
         if (Vector3.Distance(Player.transform.position, Self.transform.position) <= attackRange)
         {
 
@@ -51,6 +52,7 @@ public class ShootingBehavior : EnemyBehavior
             }
         }
 
+        //If the enemy can't shoot, decrement their cooldown timer until they can shoot again. We do this even if the player isn't in range as the enemy can still cool down no matter where the player is
         if (!canShoot)
         {
             cooldownTimer -= Time.deltaTime;
@@ -64,18 +66,7 @@ public class ShootingBehavior : EnemyBehavior
 
     public override void HandleCollision(Collision collision)
     {
-        //Knockback enemy????
+        //Nothing here, as the shooting enemy doesn't have a specific behavior when collided with
     }
 
-
-    private IEnumerator ShootDelay()
-    {
-        float timer = shootingDelay;
-        while(timer > 0)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        canShoot = true;
-    }
 }

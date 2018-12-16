@@ -4,15 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
-
-    private PlayerController player;
+    
     public GameObject DeathUi;
-
-	// Use this for initialization
-	void Start () {
-        player = GameObject.FindObjectOfType<PlayerController>();
-	}
-
+    
 
     //Affiche le UI de gameOver
     public void LoseGame()
@@ -24,7 +18,6 @@ public class GameOver : MonoBehaviour {
     //Se fait appeler quand le joueur 
     public void RestartGame()
     {
-        Debug.Log("test2");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

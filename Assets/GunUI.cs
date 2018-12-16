@@ -42,7 +42,6 @@ public class GunUI : MonoBehaviour {
 
     void Gun1()
     {
-        Debug.Log("test1");
         gun1text.GetComponent<Text>().color = Color.yellow;
         gun2text.GetComponent<Text>().color = Color.black;
         gun3text.GetComponent<Text>().color = Color.black;

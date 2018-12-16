@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GunUI : MonoBehaviour {
 
     public GameObject gun1text;
+    public GameObject gun2text;
+    public GameObject gun3text;
     public PlayerController player;
 
     private int currentGun = int.MinValue;
@@ -27,13 +29,13 @@ public class GunUI : MonoBehaviour {
         if (player.CurrentGunID == 1 && currentGun != 1)
         {
             currentGun = 1;
-            //Gun2();
+            Gun2();
         }
 
         if (player.CurrentGunID == 2 && currentGun != 2)
         {
             currentGun = 2;
-            //Gun3();
+            Gun3();
         }
 
     }
@@ -42,8 +44,27 @@ public class GunUI : MonoBehaviour {
     {
         Debug.Log("test1");
         gun1text.GetComponent<Text>().color = Color.yellow;
+        gun2text.GetComponent<Text>().color = Color.black;
+        gun3text.GetComponent<Text>().color = Color.black;
+
+
     }
-    
+
+    void Gun2()
+    {
+        gun1text.GetComponent<Text>().color = Color.black;
+        gun2text.GetComponent<Text>().color = Color.yellow;
+        gun3text.GetComponent<Text>().color = Color.black;
+
+    }
+
+    void Gun3()
+    {
+        gun1text.GetComponent<Text>().color = Color.black;
+        gun2text.GetComponent<Text>().color = Color.black;
+        gun3text.GetComponent<Text>().color = Color.yellow;
+
+    }
 
 
 }

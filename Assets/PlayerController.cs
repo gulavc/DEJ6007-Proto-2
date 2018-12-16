@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SwitchGun(int ID)
+    public void SwitchGun(int ID)
     {
         if (unlockedGuns[ID] == true)
         {

@@ -24,6 +24,7 @@ public class GameOver : MonoBehaviour {
     //Se fait appeler quand le joueur 
     public void RestartGame()
     {
+        Debug.Log("test2");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

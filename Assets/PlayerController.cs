@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     //List of Guns available to the player
     public GunClass[] availableGuns;
     private bool[] unlockedGuns;
-    private int currentGunID;
+    public int CurrentGunID { get; private set; }
 
     //public Parameters
     public int CurrentHP { get; private set; }
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         //Lock all guns at the beginning of the game
         unlockedGuns = new bool[availableGuns.Length];
-        currentGunID = int.MinValue;
+        CurrentGunID = int.MinValue;
 
         for (int i = 0; i < availableGuns.Length; ++i)
         {
@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
             {
                 currentGun = availableGuns[ID];
                 currentGun.gameObject.SetActive(true);
-                currentGunID = ID;
+                CurrentGunID = ID;
             }
         }
 
@@ -197,10 +197,10 @@ public class PlayerController : MonoBehaviour
             playerInput.NextGun = false;
 
             //Verifty that the gunID is valid, which means at least 1 gun has been unlocked
-            if (currentGunID >= 0)
+            if (CurrentGunID >= 0)
             {
                 Debug.Log("Switching Guns");
-                int nextID = (currentGunID + 1) % unlockedGuns.Length;
+                int nextID = (CurrentGunID + 1) % unlockedGuns.Length;
                 //Check if the nextt gun on the list is unlocked, looping back if at the end of the list
                 if (unlockedGuns[nextID])
                 {
@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
                     nextID = 0;
                     SwitchGun(nextID);
                 }
-                Debug.Log("ID: " + currentGunID);
+                Debug.Log("ID: " + CurrentGunID);
             }
 
 
@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
             currentGun.gameObject.SetActive(false);
 
             currentGun = availableGuns[ID];
-            currentGunID = ID;
+            CurrentGunID = ID;
             currentGun.gameObject.SetActive(true);
         }
     }

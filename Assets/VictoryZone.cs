@@ -5,6 +5,7 @@ using UnityEngine;
 public class VictoryZone : MonoBehaviour {
 
     private bool victory = false;
+    public GameObject VictoryUI;
 
     
 
@@ -13,9 +14,8 @@ public class VictoryZone : MonoBehaviour {
     {
         if (victory)
         {
-            //TODO: Appeler la fonction du vicotry UI qui affiche la victoire
 
-
+            VictoryUI.SetActive(true);
             victory = false;
         }
 

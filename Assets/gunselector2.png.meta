@@ -1,10 +1,8 @@
 fileFormatVersion: 2
-guid: c6ab4aa50fbb85e459c5bc5f12020ef2
+guid: 47f5005ea2424214fa52d66e673b615b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: gunselector_0
-    21300002: gunselector_1
-    21300004: gunselector_2
+    21300000: gunselector2_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -49,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 8, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -109,11 +107,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gunselector_0
+      name: gunselector2_0
       rect:
         serializedVersion: 2
-        x: 279
-        y: 769
+        x: 47
+        y: 118
         width: 1408
         height: 242
       alignment: 0
@@ -123,47 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6ccd951ac9e6b44aad52837b898442d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gunselector_1
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 452
-        width: 1409
-        height: 243
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e86e18fb6cfd4749b39b825c10c26ae
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gunselector_2
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 148
-        width: 1408
-        height: 242
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e2100fab0212ab43847e3279363724a
+      spriteID: 266395b6ace8e3d408e3d38adeddc177
       vertices: []
       indices: 
       edges: []
@@ -171,7 +129,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c5054e9f89a86924ea3728dda7977c03
+    spriteID: 31a6c14a3448ba5449c5d55e5ff0f475
     vertices: []
     indices: 
     edges: []

@@ -26,6 +26,12 @@ public class Startup : MonoBehaviour {
         Debug.Log("Ca part en salade");
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartGame");
+        Debug.Log("Main Menu");
+    }
+
     public void ControlsScreen()
     {
         ControlsUI.SetActive(true);
@@ -35,4 +41,5 @@ public class Startup : MonoBehaviour {
     {
         ControlsUI.SetActive(false);
     }
+
 }

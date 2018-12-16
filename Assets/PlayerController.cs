@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     //private references to other components
     private RoomManager rm;
+    private Rigidbody rb;
 
     //Player options
     public float moveSensitivity;
@@ -41,6 +42,10 @@ public class PlayerController : MonoBehaviour
         if(rm == null)
         {
             rm = GameObject.FindObjectOfType<RoomManager>();
+        }
+        if(rb == null)
+        {
+            rb = this.gameObject.GetComponent<Rigidbody>();
         }
 
         playerFacing = Direction.S;
@@ -84,12 +89,6 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         transform.Translate(playerInput.Horizontal * moveSensitivity, playerInput.Vertical * moveSensitivity, 0f);
-        /*rb.AddForce(playerDirection * moveSensitivity);
-
-        if(rb.velocity.magnitude > maxSpeed)
-        {
-            rb.AddForce(-playerDirection * Mathf.Pow(rb.velocity.magnitude - maxSpeed, 2));
-        }*/
     }
 
     private Direction CalculateDirection()
@@ -143,6 +142,7 @@ public class PlayerController : MonoBehaviour
     //Dashes in the specified direction for dashDuration, with dashStrength
     private IEnumerator Dash(Direction dir)
     {
+        rb.useGravity = false;
         isDashing = true;
         for (float time = dashDuration; time >= 0f;)
         {
@@ -153,6 +153,7 @@ public class PlayerController : MonoBehaviour
 
         playerInput.Dash = false;
         isDashing = false;
+        rb.useGravity = true;
 
     }
 

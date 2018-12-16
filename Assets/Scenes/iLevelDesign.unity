@@ -8893,8 +8893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 1015181152}
   moveSensitivity: 0.1
-  dashDuration: 0.3
-  dashStrength: 0.3
+  dashDuration: 0.4
+  dashStrength: 0.4
   maxSpeed: 10
   MaxHP: 100
   availableGuns:

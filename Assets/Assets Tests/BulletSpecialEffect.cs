@@ -57,11 +57,14 @@ public class BulletSpecialEffect : MonoBehaviour
         {
 
             //Spawns the bullet and rotates it to initiate a spread
-            BulletEndOfLife b = Instantiate(bullet, this.transform.position, Quaternion.identity * Quaternion.AngleAxis(angle * i, Vector3.back));
-                      
+            BulletEndOfLife b = Instantiate(bullet, this.transform.position, Quaternion.identity);
+
+            //Rotate the bullet
+            b.transform.Rotate(Vector3.back, (angle) * i);
 
             //Translate the bullet just a tad so they don't all spawn on each other
-            b.transform.Translate(b.transform.forward * 0.5f);
+            b.transform.Translate(b.transform.up * 0.2f);
+            
 
             b.GetComponent<Rigidbody>().velocity = b.transform.right * speedBullets;
         }

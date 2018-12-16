@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 5
   bullet: {fileID: 114864722607257762, guid: 2f16403addefda9419aa517a5bdad2db, type: 2}
-  numBullets: 4
+  numBullets: 5
 --- !u!135 &135720822864633924
 SphereCollider:
   m_ObjectHideFlags: 1

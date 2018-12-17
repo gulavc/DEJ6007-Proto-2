@@ -15,7 +15,7 @@ public class BulletSpecialEffect : MonoBehaviour
     public float numBullets = 4f;
 
     //How fast secondary bullets go
-    private float speedBullets = 3f;
+    private float speedBullets = 99f;
 
     public void Update()
 

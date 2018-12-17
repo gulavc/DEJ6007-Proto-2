@@ -31,7 +31,7 @@ public class GunManager : GunClass {
 
         for (int i = 0; i < 1; i++) {
             bullet = Instantiate(bulletPrefab, gunPoint.transform.position, transform.rotation) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = Vector3.ProjectOnPlane(Vector3.Normalize(GunAim.orientation), Vector3.back) * 10; 
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.ProjectOnPlane(Vector3.Normalize(GunAim.orientation), Vector3.back) * 45; 
 
             yield return StartCoroutine(BulletTimer());
         }
@@ -40,7 +40,7 @@ public class GunManager : GunClass {
 
     public IEnumerator BulletTimer()
     {
-        float timer = 0.05f;
+        float timer = 0.2f;
         while(timer > 0f)
         {
             timer -= Time.deltaTime;

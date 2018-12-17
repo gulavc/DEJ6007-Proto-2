@@ -34,7 +34,7 @@ public class SmashGun : GunClass
         for (int i = 0; i < numBullets; i++)
         {
             bullet = Instantiate(bulletPrefab, gunPoint.transform.position, Quaternion.AngleAxis(Random.Range(0,360), Vector3.back)) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * 5;
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * 15;
 
             yield return StartCoroutine(BulletTimer());
         }
@@ -43,7 +43,7 @@ public class SmashGun : GunClass
 
     public IEnumerator BulletTimer()
     {
-        float timer = 0.05f;
+        float timer = 0.01f;
         while (timer > 0f)
         {
             timer -= Time.deltaTime;

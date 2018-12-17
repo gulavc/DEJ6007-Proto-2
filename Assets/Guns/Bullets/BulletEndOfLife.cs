@@ -9,9 +9,9 @@ public class BulletEndOfLife : MonoBehaviour {
     //How much damage this bullet does
     public int damage = 10;
     //How hard do you shoot it?
-    public float bulletForce = 50;
+    public float bulletForce = 75;
     //How long does it live if it doesn't hit anything?
-    public float bulletLifetime = 5;
+    public float bulletLifetime = 3;
 
     void Start()
     {

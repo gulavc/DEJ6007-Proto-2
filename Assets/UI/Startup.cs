@@ -10,8 +10,8 @@ public class Startup : MonoBehaviour {
     public GameObject ControlsUI;
 
     public void StartGame()
-    { 
-       
+    {
+
         SceneManager.LoadScene("iLevelDesign");
         Debug.Log("Ca part en salade");
     }

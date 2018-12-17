@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dde6a039fe5ca244a3411471ad227cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 10
   healthBar: {fileID: 114860479930691546}
   enemyAI: {fileID: 114365873740888830, guid: d4e0c9286eac67a47a0f96b408314645, type: 2}
 --- !u!114 &114860479930691546
@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adcadcc1446e1b48b6361856cb14404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 0}
 --- !u!135 &135283358153973384
 SphereCollider:
   m_ObjectHideFlags: 1

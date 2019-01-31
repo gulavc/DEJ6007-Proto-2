@@ -63,11 +63,11 @@ public class PlayerController : MonoBehaviour
         unlockedGuns = new bool[availableGuns.Length];
         CurrentGunID = int.MinValue;
 
-        for (int i = 0; i < availableGuns.Length; ++i)
-        {
-            unlockedGuns[i] = false;
-            availableGuns[i].gameObject.SetActive(false);
-        }
+        //for (int i = 0; i < availableGuns.Length; ++i)
+        //{
+        //    unlockedGuns[i] = false;
+        //    availableGuns[i].gameObject.SetActive(false);
+        //}
 
         //Set timescale to 1, as it will be 0 if the player has previously died or completed a game
         Time.timeScale = 1;

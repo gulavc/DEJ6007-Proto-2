@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartGame.unity
     guid: 4dfc68b6b79a8e04e8528a347c65bb7a
   - enabled: 1
     path: Assets/Scenes/iLevelDesign.unity
     guid: 19422c06c053b1046a5a57811e2cd154
+  - enabled: 1
+    path: Assets/Scenes/Second gym.unity
+    guid: a7936e4e866458042b383600c51ff1cb
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
